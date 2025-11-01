@@ -1,0 +1,36 @@
+.funfacts-section {
+    background-color: rgba(255, 237, 214, 1); 
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    width: 80%;
+    max-width: 900px;
+}
+
+.funfacts-title {
+    font-size: 36px;
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    color: #5a4e42;
+    margin-bottom: 20px;
+}
+
+.funfacts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.funfact-card {
+    background: #a47764;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}

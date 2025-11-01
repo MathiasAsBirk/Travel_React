@@ -1,0 +1,156 @@
+.cities-container {
+  text-align: center;
+  background-color: #f6dec2;
+  padding: 40px 20px;
+}
+
+.cities-title {
+  font-family: "Inter";
+  font-size: 2.5em;
+  color: #4a3f35;
+  margin-bottom: 10px;
+}
+
+.cities-intro {
+  font-family: "Inter";
+  font-size: 1.2em;
+  color: #5a4e42;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.city-card {
+  background: #fef6e9;
+  border: 1px solid #d4c1a1;
+  border-radius: 10px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.city-card:hover {
+  transform: scale(1.03);
+  box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.city-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.city-content {
+  padding: 20px;
+}
+
+.city-name {
+  font-family: "Inter";
+  font-size: 1.5em;
+  color: #3e2f26;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #b89f80;
+  padding-bottom: 5px;
+}
+
+.city-description {
+  font-family: "Inter";
+  color: #5a4e42;
+  font-size: 1em;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.city-highlights {
+  list-style: none;
+  padding: 0;
+  color: #7a6a58;
+}
+
+.city-highlights li {
+  font-family: "Inter";
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+/* MODAL DESIGN */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fffdf5;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 60%;
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.modal h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 2em;
+  color: #3e2f26;
+  margin-bottom: 10px;
+}
+
+.modal hr {
+  border: none;
+  border-top: 2px dashed #b89f80;
+  margin-bottom: 15px;
+}
+
+.modal-text {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  color: #5a4e42;
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.close-button {
+  background-color: #b89f80;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.close-button:hover {
+  background-color: #a07d60;
+}
+
+/* FADE IN ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

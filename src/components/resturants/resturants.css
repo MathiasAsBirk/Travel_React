@@ -1,0 +1,76 @@
+
+/* blog.css */
+.blog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f6dec2; /* Soft parchment-like background */
+  padding: 20px;
+}
+
+.paper-background {
+  background: #fef6e9;
+  padding: 30px;
+  max-width: 800px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid #d4c1a1;
+  font-family: 'Merriweather', serif;
+  line-height: 1.8;
+  position: relative;
+}
+
+.paper-background::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('/src/assets/paper-texture.png'); /* Texture overlay */
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.blog-title {
+  font-family: "Inter";
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #4a3f35;
+  margin-bottom: 10px;
+}
+
+.blog-date {
+    font-family: "Inter";
+  text-align: center;
+  font-size: 0.9em;
+  color: #7a6a58;
+  margin-bottom: 20px;
+}
+
+.blog-intro {
+    font-family: "Inter";
+  font-style: italic;
+  color: #5a4e42;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.blog-entry {
+    font-family: "Inter";
+  margin-bottom: 40px;
+}
+
+.blog-entry h2 {
+  color: #3e2f26;
+  border-bottom: 2px dashed #b89f80;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.blog-entry p {
+  color: #5a4e42;
+  text-align: justify;
+}
