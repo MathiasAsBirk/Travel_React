@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import "./citiespage.css";
 
+import romeImg from '../../assets/Rome.jpg';
+import florenceImg from '../../assets/Florence.jpg';
+import milanImg from '../../assets/milan.jpg';
+import veniceImg from '../../assets/Venice.jpg';
+import triesteImg from '../../assets/trieste.jpg';
+import rijekaImg from '../../assets/rijeka.jpg';
+
 const cities = [
   {
     name: "Rome, Italy",
-    image: "/src/assets/Rome.jpg",
+    image: romeImg,
     description:
       "Rome, the Eternal City, is a place where history and modern life blend seamlessly. From the Colosseum to the Vatican, every corner holds a story.",
     highlights: ["Colosseum", "Vatican City", "Trevi Fountain"],
@@ -13,7 +20,7 @@ const cities = [
   },
   {
     name: "Florence, Italy",
-    image: "/src/assets/Florence.jpg",
+    image: florenceImg,
     description:
       "Florence, the birthplace of the Renaissance, is a masterpiece itself. The stunning Duomo, Uffizi Gallery, and Ponte Vecchio make this city unforgettable.",
     highlights: ["Duomo", "Uffizi Gallery", "Ponte Vecchio"],
@@ -22,7 +29,7 @@ const cities = [
   },
   {
     name: "Milan, Italy",
-    image: "/src/assets/milan.jpg",
+    image: milanImg,
     description:
       "Milan, Italy's fashion capital, is a mix of historic charm and modern luxury. The grand Duomo and high-end shopping streets make it a must-visit.",
     highlights: ["Milan Cathedral", "Galleria Vittorio Emanuele", "Sforza Castle"],
@@ -31,7 +38,7 @@ const cities = [
   },
   {
     name: "Venice, Italy",
-    image: "/src/assets/Venice.jpg",
+    image: veniceImg,
     description:
       "Venice, the floating city, is pure magic. Glide through its canals on a gondola and soak in the stunning architecture of St. Mark's Square.",
     highlights: ["Grand Canal", "St. Mark’s Basilica", "Rialto Bridge"],
@@ -40,7 +47,7 @@ const cities = [
   },
    {
     name: "Trieste, Italy",
-    image: "/src/assets/trieste.jpg",
+    image: triesteImg,
     description:
       "Trieste, a charming port city in northeastern Italy, is known for its unique blend of Italian, Austrian, and Slavic culture, as well as its stunning Adriatic seaside location.",
     highlights: ["Piazza Unità d'Italia", "Castello di Miramare", "Canal Grande"],
@@ -49,7 +56,7 @@ const cities = [
 },
   {
     name: "Rijeka, Croatia",
-    image: "/src/assets/rijeka.jpg",
+    image: rijekaImg,
     description:
       "Rijeka, a vibrant coastal city in Croatia, is known for its lively festivals, historic castles, and beautiful Adriatic coastline.",
     highlights: ["Trsat Castle", "Korzo Street", "City Market"],

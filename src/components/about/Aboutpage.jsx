@@ -1,5 +1,5 @@
-import React from "react";
 import "./aboutpage.css";
+import mathiasImg from '../../assets/Black.webp';
 
 const AboutPage = () => {
   return (
@@ -11,7 +11,8 @@ const AboutPage = () => {
       
       <div className="about-content">
         <div className="about-person">
-          <img src="../src/assets/Black.webp" alt="Mathias" className="about-image" />
+          {/* 2. Use the imported variable */}
+          <img src={mathiasImg} alt="Mathias" className="about-image" />
           <h2 className="about-name">Mathias</h2>
           <p className="about-text">
             Hi, I’m Mathias! Traveling has always been a passion of mine, and this road trip gave me the chance to explore the beauty of Italy and Croatia. From indulging in authentic Italian pasta to wandering through Venice’s canals, every moment was incredible. 

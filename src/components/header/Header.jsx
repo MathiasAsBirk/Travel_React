@@ -1,12 +1,14 @@
 import '../header/header.css';
 
+import headerBg from '../../assets/Header.png'; 
+
 const headerImages = {
-    home: "../src/assets/Header.png", // Image for home header
+    home: headerBg, 
 };
 
 const Header = ({ headerType }) => {
     return (
-        <header className="header" style={{ backgroundImage: `url('${headerImages[headerType]}')` }}>
+        <header className="header" style={{ backgroundImage: `url(${headerImages[headerType]})` }}>
             <div className="header-overlay"></div>
             <h2 className="header-subtitle">
                 Discover the enchanting beauty of Italy and Croatia!
