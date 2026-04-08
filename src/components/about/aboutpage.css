@@ -1,6 +1,7 @@
-body{
+body {
     background-color: #f6dec2;
 }
+
 .about-container {
     max-width: 900px;
     margin: auto;
@@ -14,47 +15,82 @@ body{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 90px;
     margin-bottom: 40px;
-  }
-  
-  .about-title {
+}
+
+.about-title {
     font-size: 2.5em;
     margin-bottom: 20px;
-  }
-  
-  .about-intro {
+}
+
+.about-intro {
     font-size: 1.2em;
     margin-bottom: 30px;
     line-height: 1.6;
-  }
-  
-  .about-content {
+}
+
+.about-content {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 40px;
-  }
-  
-  .about-person {
+}
+
+.about-person {
     max-width: 400px;
     text-align: center;
-  }
-  
-  .about-image {
+}
+
+.about-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #d4a373;
     margin-bottom: 15px;
-  }
-  
-  .about-name {
+}
+
+.about-name {
     font-size: 1.8em;
     margin-bottom: 10px;
-  }
-  
-  .about-text {
+}
+
+.about-text {
     font-size: 1.1em;
     line-height: 1.5;
-  }
-  
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .about-container {
+        margin: 80px 20px 40px;
+        padding: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .about-container {
+        margin: 75px 15px 30px;
+        padding: 20px 15px;
+    }
+
+    .about-title {
+        font-size: 1.8em;
+    }
+
+    .about-intro {
+        font-size: 1em;
+    }
+
+    .about-person {
+        max-width: 100%;
+    }
+
+    .about-name {
+        font-size: 1.4em;
+    }
+
+    .about-text {
+        font-size: 1em;
+    }
+}

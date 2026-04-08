@@ -2,7 +2,7 @@
   position: relative;
   text-align: center;
   color: white;
-  height: 102vh; 
+  height: 102vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -25,26 +25,51 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
 .header-subtitle {
-  width: 700px; 
-  height: 240px; 
-  left: 120px; 
-  top: 200px; 
-  position: absolute; 
+  position: absolute;
   color: #f6dec2;
-  font-size: 60px;
   font-family: "Inter";
   font-style: italic;
   font-weight: 700;
   word-wrap: break-word;
-  direction: right;
   text-align: start;
   z-index: 2;
+  /* Desktop */
+  width: 700px;
+  left: 120px;
+  top: 200px;
+  font-size: 60px;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .header-subtitle {
+    width: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px;
+    text-align: center;
+  }
+}
 
+/* Mobile */
+@media (max-width: 768px) {
+  .header {
+    height: 60vh;
+  }
+
+  .header-subtitle {
+    width: 90%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    text-align: center;
+  }
+}

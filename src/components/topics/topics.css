@@ -4,13 +4,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: rgba(254, 246, 233, 1); 
+    background-color: rgba(254, 246, 233, 1);
     padding: 60px 20px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     border-radius: 25px;
     margin: 40px auto;
     width: 80%;
     max-width: 900px;
+    box-sizing: border-box;
 }
 
 .intro-title {
@@ -28,4 +29,38 @@
     color: #7a6453;
     max-width: 750px;
     line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .intro-section {
+        width: 90%;
+        padding: 40px 20px;
+    }
+
+    .intro-title {
+        font-size: 36px;
+    }
+
+    .intro-text {
+        font-size: 18px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .intro-section {
+        width: 95%;
+        padding: 30px 15px;
+        border-radius: 15px;
+        margin: 20px auto;
+    }
+
+    .intro-title {
+        font-size: 26px;
+    }
+
+    .intro-text {
+        font-size: 15px;
+    }
 }

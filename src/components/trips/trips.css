@@ -1,5 +1,5 @@
 .funfacts-section {
-    background-color: rgba(255, 237, 214, 1); 
+    background-color: rgba(255, 237, 214, 1);
     padding: 60px 20px;
     text-align: center;
     border-radius: 25px;
@@ -7,6 +7,7 @@
     margin: 40px auto;
     width: 80%;
     max-width: 900px;
+    box-sizing: border-box;
 }
 
 .funfacts-title {
@@ -33,4 +34,40 @@
     font-family: "Inter", sans-serif;
     max-width: 300px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .funfacts-section {
+        width: 90%;
+        padding: 40px 20px;
+    }
+
+    .funfacts-title {
+        font-size: 28px;
+    }
+
+    .funfact-card {
+        font-size: 17px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .funfacts-section {
+        width: 95%;
+        padding: 30px 15px;
+        border-radius: 15px;
+        margin: 20px auto;
+    }
+
+    .funfacts-title {
+        font-size: 22px;
+    }
+
+    .funfact-card {
+        font-size: 15px;
+        max-width: 100%;
+        width: 100%;
+    }
 }
