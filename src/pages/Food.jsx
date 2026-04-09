@@ -1,13 +1,7 @@
-import Resturants from "../components/resturants/Resturants";
-
-
+import Resturants from "../components/resturants/Resturants"
 
 const Food = () => {
-    return (
-        <div style={{ marginTop: 70, paddingTop: 0 }}>
-            <Resturants/>
-        </div>
-    );
-};
+  return <Resturants />
+}
 
-export default Food;
+export default Food

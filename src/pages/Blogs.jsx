@@ -1,13 +1,7 @@
 import Blog from "../components/blog/Blog"
 
-
-
 const Blogs = () => {
-    return (
-        <div>
-            <Blog/>
-        </div>
-    )
-}   
+  return <Blog />
+}
 
 export default Blogs

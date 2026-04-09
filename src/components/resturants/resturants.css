@@ -1,95 +1,112 @@
-.blog-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  background-color: #f6dec2;
-  padding: 80px 20px 40px;
-  box-sizing: border-box;
+.food-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
 }
 
-.paper-background {
-  background: #fef6e9;
-  padding: 30px;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  border: 1px solid #d4c1a1;
-  font-family: 'Merriweather', serif;
-  line-height: 1.8;
-  position: relative;
-}
-
-.paper-background::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url('/src/assets/paper-texture.png');
-  opacity: 0.2;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-.blog-title {
-  font-family: "Inter";
+.food-page__header {
   text-align: center;
-  font-size: 2em;
-  font-weight: bold;
-  color: #4a3f35;
-  margin-bottom: 10px;
+  margin-bottom: 56px;
 }
 
-.blog-date {
-  font-family: "Inter";
-  text-align: center;
-  font-size: 0.9em;
-  color: #7a6a58;
-  margin-bottom: 20px;
+.food-page__tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
 }
 
-.blog-intro {
-  font-family: "Inter";
+.food-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.food-page__subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
   font-style: italic;
-  color: #5a4e42;
-  text-align: center;
-  margin-bottom: 30px;
+  max-width: 480px;
+  margin: 0 auto 12px;
 }
 
-.blog-entry {
-  font-family: "Inter";
-  margin-bottom: 40px;
+.food-page__date {
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: 500;
 }
 
-.blog-entry h2 {
-  color: #3e2f26;
-  border-bottom: 2px dashed #b89f80;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+/* Entries */
+.food-page__entries {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.blog-entry p {
-  color: #5a4e42;
-  text-align: justify;
+.food-entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.3s var(--ease-out);
 }
 
-/* Mobile */
+.food-entry:hover {
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+
+.food-entry__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.food-entry__emoji {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.food-entry__location {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.food-entry__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.food-entry__text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .blog-container {
-    padding: 75px 15px 30px;
+  .food-page {
+    padding: 32px 20px 64px;
   }
 
-  .paper-background {
-    padding: 20px 15px;
+  .food-entry {
+    padding: 24px;
   }
 
-  .blog-title {
-    font-size: 1.5em;
-  }
-
-  .blog-entry h2 {
-    font-size: 1em;
+  .food-entry__title {
+    font-size: 20px;
   }
 }

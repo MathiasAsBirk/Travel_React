@@ -1,19 +1,15 @@
 import './navbar.css';
 import React, { useState, useRef, useEffect } from 'react';
-import roadtripLogo from '/src/assets/roadtrip-logo.svg';
-import searchIcon from '/src/assets/magnifying-glass-solid.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const searchData = [
-  // Pages
-  { label: 'Home',              path: '/',       category: 'Page' },
+  { label: 'Home',              path: '/',        category: 'Page' },
   { label: 'Gallery',           path: '/Gallery', category: 'Page' },
   { label: 'Cities',            path: '/Cities',  category: 'Page' },
   { label: 'Food & Restaurants',path: '/Food',    category: 'Page' },
   { label: 'Blog',              path: '/Blogs',   category: 'Page' },
   { label: 'About',             path: '/About',   category: 'Page' },
 
-  // Cities
   { label: 'Rome',     path: '/Cities', category: 'City' },
   { label: 'Florence', path: '/Cities', category: 'City' },
   { label: 'Milan',    path: '/Cities', category: 'City' },
@@ -21,7 +17,6 @@ const searchData = [
   { label: 'Trieste',  path: '/Cities', category: 'City' },
   { label: 'Rijeka',   path: '/Cities', category: 'City' },
 
-  // Landmarks / highlights
   { label: 'Colosseum',               path: '/Cities', category: 'Landmark' },
   { label: 'Vatican City',            path: '/Cities', category: 'Landmark' },
   { label: 'Trevi Fountain',          path: '/Cities', category: 'Landmark' },
@@ -37,7 +32,6 @@ const searchData = [
   { label: 'Castello di Miramare',    path: '/Cities', category: 'Landmark' },
   { label: 'Piazza Unità d\'Italia',  path: '/Cities', category: 'Landmark' },
 
-  // Blog posts
   { label: 'Blog: Rijeka',   path: '/Blogs', category: 'Blog' },
   { label: 'Blog: Trieste',  path: '/Blogs', category: 'Blog' },
   { label: 'Blog: Venice',   path: '/Blogs', category: 'Blog' },
@@ -45,7 +39,6 @@ const searchData = [
   { label: 'Blog: Florence', path: '/Blogs', category: 'Blog' },
   { label: 'Blog: Rome',     path: '/Blogs', category: 'Blog' },
 
-  // Food
   { label: 'Italian Food',  path: '/Food', category: 'Food' },
   { label: 'Croatian Food', path: '/Food', category: 'Food' },
   { label: 'Restaurants',   path: '/Food', category: 'Food' },
@@ -55,28 +48,41 @@ const searchData = [
   { label: 'Seafood',       path: '/Food', category: 'Food' },
 ];
 
+const navLinks = [
+  { to: '/',        label: 'Home' },
+  { to: '/Gallery', label: 'Gallery' },
+  { to: '/Cities',  label: 'Cities' },
+  { to: '/Food',    label: 'Food' },
+  { to: '/Blogs',   label: 'Blog' },
+  { to: '/About',   label: 'About' },
+];
+
 function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchVisible, setSearchVisible] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [scrolled, setScrolled] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const searchRef = useRef(null);
   const inputRef = useRef(null);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
   const closeMenu = () => setMenuOpen(false);
 
-  const toggleSearch = () => {
-    setSearchVisible(v => {
-      if (v) {
-        setQuery('');
-        setResults([]);
-      }
-      return !v;
-    });
+  const openSearch = () => {
+    setSearchOpen(true);
+    setMenuOpen(false);
+  };
+
+  const closeSearch = () => {
+    setSearchOpen(false);
+    setQuery('');
+    setResults([]);
+    setActiveIndex(-1);
   };
 
   const handleQueryChange = (e) => {
@@ -88,20 +94,22 @@ function Navigation() {
       return;
     }
     const lower = val.toLowerCase();
-    const filtered = searchData.filter(item =>
+    setResults(searchData.filter(item =>
       item.label.toLowerCase().includes(lower)
-    ).slice(0, 8);
-    setResults(filtered);
+    ).slice(0, 8));
   };
 
   const goTo = (path) => {
     navigate(path);
-    setQuery('');
-    setResults([]);
-    setSearchVisible(false);
+    closeSearch();
+    closeMenu();
   };
 
   const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      closeSearch();
+      return;
+    }
     if (results.length === 0) return;
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -112,91 +120,137 @@ function Navigation() {
     } else if (e.key === 'Enter') {
       const target = activeIndex >= 0 ? results[activeIndex] : results[0];
       if (target) goTo(target.path);
-    } else if (e.key === 'Escape') {
-      setQuery('');
-      setResults([]);
-      setSearchVisible(false);
     }
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setResults([]);
-        setSearchVisible(false);
-        setQuery('');
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Focus input when search opens
   useEffect(() => {
-    if (searchVisible && inputRef.current) {
+    if (searchOpen && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [searchVisible]);
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(prev => !prev);
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, []);
+
+  // Lock body scroll when menu or search is open
+  useEffect(() => {
+    document.body.style.overflow = (menuOpen || searchOpen) ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen, searchOpen]);
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="navigation">
-      <img className="logo" src={roadtripLogo} alt="" />
+    <>
+      <nav className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
+        <div className="nav__inner">
+          <Link to="/" className="nav__logo" onClick={closeMenu}>
+            Roadtrip
+          </Link>
 
-      <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+          <div className={`nav__links ${menuOpen ? 'nav__links--open' : ''}`}>
+            {navLinks.map(link => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`nav__link ${isActive(link.to) ? 'nav__link--active' : ''}`}
+                onClick={closeMenu}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-      <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
-        <Link to="/" className="nav-link" onClick={closeMenu}>Home</Link>
-        <Link to="/Gallery" className="nav-link" onClick={closeMenu}>Gallery</Link>
-        <Link to="/cities" className="nav-link" onClick={closeMenu}>Cities</Link>
-        <Link to="/Food" className="nav-link" onClick={closeMenu}>Food</Link>
-        <Link to="/Blogs" className="nav-link" onClick={closeMenu}>Blog</Link>
-        <Link to="/About" className="nav-link" onClick={closeMenu}>About</Link>
-      </div>
+          <div className="nav__actions">
+            <button className="nav__search-btn" onClick={openSearch} aria-label="Search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
 
-      <div className="search-container" ref={searchRef}>
-        <div className="search-icon" onClick={toggleSearch}>
-          <img className="search-img" src={searchIcon} alt="Search Icon" />
+            <button
+              className={`nav__hamburger ${menuOpen ? 'nav__hamburger--active' : ''}`}
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {searchVisible && (
-          <div className="search-wrapper">
-            <input
-              ref={inputRef}
-              type="text"
-              className="search-input"
-              placeholder="Search cities, food, blogs..."
-              value={query}
-              onChange={handleQueryChange}
-              onKeyDown={handleKeyDown}
-            />
+      {/* Mobile menu overlay */}
+      <div className={`nav__mobile-overlay ${menuOpen ? 'nav__mobile-overlay--visible' : ''}`} onClick={closeMenu} />
+
+      {/* Search overlay */}
+      {searchOpen && (
+        <div className="search-overlay" onClick={closeSearch}>
+          <div className="search-modal" onClick={e => e.stopPropagation()} ref={searchRef}>
+            <div className="search-modal__input-wrap">
+              <svg className="search-modal__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input
+                ref={inputRef}
+                type="text"
+                className="search-modal__input"
+                placeholder="Search cities, food, blogs..."
+                value={query}
+                onChange={handleQueryChange}
+                onKeyDown={handleKeyDown}
+              />
+              <kbd className="search-modal__kbd">ESC</kbd>
+            </div>
+
             {results.length > 0 && (
-              <ul className="search-dropdown">
+              <ul className="search-modal__results">
                 {results.map((item, i) => (
                   <li
                     key={i}
-                    className={`search-result-item ${i === activeIndex ? 'active' : ''}`}
+                    className={`search-modal__item ${i === activeIndex ? 'search-modal__item--active' : ''}`}
                     onMouseDown={() => goTo(item.path)}
+                    onMouseEnter={() => setActiveIndex(i)}
                   >
-                    <span className="result-label">{item.label}</span>
-                    <span className="result-category">{item.category}</span>
+                    <span className="search-modal__label">{item.label}</span>
+                    <span className="search-modal__category">{item.category}</span>
                   </li>
                 ))}
               </ul>
             )}
+
             {query.length > 0 && results.length === 0 && (
-              <ul className="search-dropdown">
-                <li className="search-no-results">No results found</li>
-              </ul>
+              <div className="search-modal__empty">
+                No results found for "{query}"
+              </div>
+            )}
+
+            {query.length === 0 && (
+              <div className="search-modal__hint">
+                Start typing to search pages, cities, landmarks, and more...
+              </div>
             )}
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </>
   );
 }
 
